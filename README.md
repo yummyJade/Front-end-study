@@ -12,3 +12,5 @@
 默默的吐槽一波npm，搞了一个晚上都install不出来，还是淘宝镜像好，我的老天
 淘宝镜像安装：npm install -g cnpm --registry=https://registry.npm.taobao.org 你值得拥有
 
+
+
