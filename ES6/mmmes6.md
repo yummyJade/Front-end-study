@@ -1,0 +1,2 @@
+# ECMAScript6入门
+
