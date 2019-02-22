@@ -485,7 +485,7 @@ function createCurry(func, args) {
 
 柯里化看起来是一种复杂化，但实际上是对思维逻辑的一种简化
 
-## 10.对象的扩展
+## 9.对象的扩展
 
 属性 方法的书写简化
 
@@ -501,7 +501,83 @@ const Person = {
 }
 ```
 
+name
 
+获得属性方法的名称
+
+对于get和set方法
+
+```javascript
+const obj = {
+    get foo() {},
+    set foo(x) {}
+}
+descriptor.get.name //"get foo"
+```
+
+解构赋值
+
+```javascript
+let {x,y,...z} = {x:2,y:3,b:4,c:5};
+console.log(z); //{ b: 4, c: 5 }
+```
+
+可以把不需要的参数提取出来传给下一个函数
+
+
+
+...可以提取出参数对象所有可遍历属性，并拷贝到当前对象之中
+
+也可以用于数组提取（数组是特殊的对象）
+
+```javascript
+let foo = {...['a','b','c']};
+console.log(foo); //{ '0': 'a', '1': 'b', '2': 'c' }
+let foo = {...'hello'};
+console.log(foo); // {0: "h", 1: "e", 2: "l", 3: "l", 4: "o"} {0: "h", 1: "e", 2: "l", 3: "l", 4: "o"}
+```
+
+可以实现对象的拷贝，复刻
+
+```javascript
+let newVersion = {
+  ...previousVersion,
+  name: 'New Name' // Override the name property
+};
+
+```
+
+## 10.对象的新增方法
+
+解决严格相等 Object.is() 解决了NaN和+0 -0的问题
+
+对象的合并Object.assign()
+
+```javascript
+const target = {a:1};
+const source1 = {b:2};
+const source2 = {c:3};
+Object.assign(target,source1,source2);
+```
+
+可用于为对象添加属性
+
+## Set和Map数据结构
+
+Set 不允许重复的数据集
+
+可以结合...用来去重
+
+```javascript
+[...new Set(array)]
+[...new Set('ababbc')].join('')
+```
+
+set的遍历顺序就是插入顺序
+
+set没有key value之说，两个都是相同的
+
+weakset 只能存放对象，且不可预测
 
 ## 20.Class的基本语法
 
@@ -519,3 +595,24 @@ const Person = {
 
 ···
 
+
+
+## 关于有关的迭代方式
+
+```javascript
+const s = new Set();
+[2,3,4,5].forEach(x => s.add(x));
+for(let i of s){
+    console.log(i);
+}
+```
+
+```javascript
+let set = new Set([1, 2, 3]);
+set = new Set([...set].map(x => x * 2));
+// 返回Set结构：{2, 4, 6}
+
+let set = new Set([1, 2, 3, 4, 5]);
+set = new Set([...set].filter(x => (x % 2) == 0));
+// 返回Set结构：{2, 4}
+```
