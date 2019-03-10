@@ -562,7 +562,7 @@ Object.assign(target,source1,source2);
 
 可用于为对象添加属性
 
-## Set和Map数据结构
+## 12.Set和Map数据结构
 
 Set 不允许重复的数据集
 
@@ -578,6 +578,99 @@ set的遍历顺序就是插入顺序
 set没有key value之说，两个都是相同的
 
 weakset 只能存放对象，且不可预测
+
+
+
+## 15.Promise对象
+
+promise对象新建后会立即执行
+
+```javascript
+let promise = new Promise(function(resolve,reject){
+    console.log('Promise');
+    resolve();
+})
+
+promise.then(function(){
+    console.log('resolved.');
+})
+
+console.log('Hi');
+
+//promise
+//Hi
+//resolved
+```
+
+调用resolve或reject后promise结束
+
+
+
+
+
+**then方法**
+
+异步，要等js引擎完成主线程的任务
+
+为promise实例添加状态改变时的回调函数
+
+可采用链式写法
+
+```javascript
+promise.then((resolve) => {
+    
+},(reject) => {
+    //...可选参数
+})
+
+
+// good
+promise
+  .then((data) => { //cb
+    // success
+  })
+  .catch((err) => {
+    // error
+  });
+```
+
+
+
+**错误**
+
+```javascript
+const promise = new Promise( (resolve,reject) => {
+    throw new Error('test');
+    //2.reject('test');
+})
+promise.catch((error) => {
+    console.log(error);
+})
+
+//reject作用类似，也就是抛出错误
+```
+
+如果没有catch，那么promise的错误无法抛出
+
+ Promise 的状态一旦改变，就永久保持该状态，不会再变了,也就是说reject等只有第一次有效
+
+
+
+promise.all/finally
+
+无论如何都会进入该方法
+
+**Promise.resolve/reject**
+
+四种参数方式，注意thenable的话与thenable这个对象有关，当我们直接调用这个方法，那么就返回一个
+
+
+
+**then和settimeout**
+
+settimeout在下一轮“事件循环”的时候开始执行，Promise.then()在本轮“事件循环”结束时执行
+
+
 
 ## 20.Class的基本语法
 

@@ -1,0 +1,67 @@
+div{
+    margin-top: 50px;
+}
+.circle1{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: blueviolet;
+}
+.ellipse1{
+    width: 200px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: blueviolet;
+
+}
+.ellipse2{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%/ 100% 100% 0 0;
+    background-color: blueviolet;
+
+}
+.ellipse3{
+    width: 100px;
+    height: 100px;
+    border-radius:  100% 0 0 0;
+    background-color: olivedrab;
+
+}
+
+/* 不受变形影响的伪元素/ */
+.triangle1{
+    position: relative;
+    width: 200px;
+    height: 100px;
+    margin-left: 50px;
+
+}
+.triangle1:before{
+    content: " ";
+    position: absolute;
+    top:0;right:0;bottom: 0;left: 0;
+    z-index: -1;
+    background-color: brown;
+    transform: skew(-45deg);
+}
+.pic{
+    clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%);
+    transition: 1s clip-path;
+}
+.pic:hover{
+    clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+}
+
+.cutFeet{
+    width: 300px;
+    height: 150px;
+    background-color: blueviolet;
+    background:
+        linear-gradient(45deg,transparent 15px,blueviolet 0) left,
+        linear-gradient(-45deg,transparent 15px,blue 0) right;
+    background-repeat: no-repeat;
+    background-size: 50% 100%;
+}
+
+/* mixin可以增强可维护性 */
